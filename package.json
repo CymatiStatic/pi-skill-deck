@@ -1,7 +1,7 @@
 {
   "name": "pi-skill-deck",
-  "version": "0.2.1",
-  "description": "Two-pane categorized skill browser for Pi with bookmarks, tags, frecency tracking, source attribution, and 8 group-by modes (category, source, framework, creator, location, tag, usage, flat)",
+  "version": "0.3.0",
+  "description": "Two-pane skill manager for Pi: enable/disable skills by category, custom skill paths, per-session overrides, bookmarks, tags, frecency tracking, and 8 group-by modes (category, source, framework, creator, location, tag, usage, flat)",
   "main": "index.ts",
   "type": "module",
   "keywords": [
@@ -27,6 +27,8 @@
     "overlay.ts",
     "scan.ts",
     "state.ts",
+    "config.ts",
+    "session.ts",
     "categories.ts",
     "source.ts",
     "body.ts",

@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.3.0] — 2026-07-05
+
+Merged features from the community fork **SkyNotion/pi-skill-manager** on top
+of pi-skill-deck, keeping the original branding, `@mariozechner/*` peer deps,
+and Bun toolchain.
+
+### Added
+- **Category gating** — enable/disable whole skill categories. Disabled
+  categories are stripped from Pi's system prompt in `before_agent_start`,
+  so the model genuinely stops seeing those skills (not just a view filter).
+- **Custom skill paths** — register skills from arbitrary directories via
+  `~/.pi/agent/skill-manager-config.json` (`customSkills[]`, with optional
+  `name` / `parentDir` / `fileName` / `provider` / `recurse`). Custom skills
+  are injected into the `<skills>` block of the system prompt.
+- **Per-session overrides** — category toggles made in the overlay persist to
+  the session via `pi.appendEntry()`: survive `/resume`, reset on `/new`.
+- **`/skill-manager` command** — new primary command name. `/skill-deck` and
+  `/skills` remain as aliases.
+- New modules `config.ts` (global config) and `session.ts` (per-session
+  override read/write).
+
+### Changed
+- Default gating policy is **all-enabled** (absent `enabledCategories` → all
+  skills visible). The upstream fork defaulted to all-*disabled*, which would
+  hide every skill on a fresh install; that was deliberately reversed here so
+  installation is non-destructive. Gating is strictly opt-in.
+
+### Fixed
+- Corrected a syntax error in the fork's `scan.ts` (`skills.set(…)` call was
+  missing its closing `});`), which prevented the fork from compiling.
+
+---
+
 ## [0.2.1] — 2026-05-28
 
 ### Added
